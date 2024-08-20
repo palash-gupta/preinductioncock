@@ -4,7 +4,7 @@ import cgi
 import cv2 as cv
 import pickle
 
-PORT = 90
+PORT = 80
 
 class SimpleHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
     def do_POST(self):
@@ -32,7 +32,10 @@ class SimpleHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
                 self.wfile.write(b"No file was uploaded")
         elif 'data' in form:
             data_item = form['data']
-
+            data_item = data_item.value
+            data_item = data_item.encode('utf-8')
+            print('got data')
+            print(data_item)
             frame = pickle.loads(data_item)
             cv.imshow("webcam feed", frame)
 
