@@ -1,7 +1,6 @@
 import http.server
 import socketserver
 import cgi
-import cv2 as cv
 import pickle
 
 PORT = 80
